@@ -1,11 +1,51 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const skills = [
+    'Full-Stack Developer',
+    'React Specialist',
+    'UI/UX Designer',
+    'Mobile App Developer',
+    'Database Expert',
+    'Cloud Architect'
+  ];
+
   const scrollToNext = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const currentSkill = skills[currentIndex];
+    let charIndex = 0;
+    
+    const typeWriter = setInterval(() => {
+      if (charIndex <= currentSkill.length) {
+        setDisplayText(currentSkill.slice(0, charIndex));
+        charIndex++;
+      } else {
+        clearInterval(typeWriter);
+        setTimeout(() => {
+          setCurrentIndex((prev) => (prev + 1) % skills.length);
+        }, 2000);
+      }
+    }, 100);
+
+    return () => clearInterval(typeWriter);
+  }, [currentIndex]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -35,17 +75,29 @@ const Hero = () => {
           <h2 className="text-4xl md:text-6xl font-bold mb-8 text-foreground">
             Shadrach
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Full-Stack Developer crafting exceptional digital experiences with modern technologies
-          </p>
+          <div className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            <span className="text-primary font-semibold">{displayText}</span>
+            <span className="animate-pulse">|</span>
+            <br />
+            <span className="text-sm">crafting exceptional digital experiences with modern technologies</span>
+          </div>
         </div>
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-in">
-          <Button size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+          <Button 
+            size="lg" 
+            className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+            onClick={scrollToProjects}
+          >
             View My Work
           </Button>
-          <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            onClick={scrollToContact}
+          >
             Get In Touch
           </Button>
         </div>
