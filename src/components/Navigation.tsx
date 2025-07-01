@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
@@ -33,71 +32,126 @@ const Navigation = () => {
   };
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/80 backdrop-blur-md border-b border-border shadow-lg' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="container">
+        <div className="flex items-center justify-between" style={{ height: '4rem' }}>
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('#')}
-            className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            className="text-2xl font-bold gradient-text"
+            style={{ 
+              background: 'none', 
+              border: 'none', 
+              cursor: 'pointer',
+              transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
           >
             MS
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center" style={{ gap: '2rem' }}>
             {menuItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group"
+                className="nav-link"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--muted-foreground)',
+                  cursor: 'pointer',
+                  transition: 'color 0.3s ease',
+                  position: 'relative',
+                  padding: '0.5rem 0'
+                }}
+                onMouseEnter={(e) => e.target.style.color = 'var(--primary)'}
+                onMouseLeave={(e) => e.target.style.color = 'var(--muted-foreground)'}
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary transition-all duration-300 group-hover:w-full" />
+                <span 
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: 0,
+                    height: '2px',
+                    background: 'var(--gradient-primary)',
+                    transition: 'width 0.3s ease'
+                  }}
+                />
               </button>
             ))}
-            <Button 
+            <button 
               onClick={() => scrollToSection('#contact')}
-              className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+              className="btn btn-primary btn-sm"
             >
               Hire Me
-            </Button>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+            className="md:hidden p-2"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--muted-foreground)',
+              cursor: 'pointer',
+              transition: 'color 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.target.style.color = 'var(--primary)'}
+            onMouseLeave={(e) => e.target.style.color = 'var(--muted-foreground)'}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border shadow-lg">
-            <div className="px-6 py-4 space-y-4">
+          <div 
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              background: 'hsla(220, 26%, 6%, 0.95)',
+              backdropFilter: 'blur(12px)',
+              borderBottom: '1px solid var(--border)',
+              boxShadow: 'var(--shadow-elegant)',
+              padding: '1rem 1.5rem'
+            }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {menuItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-muted-foreground hover:text-primary transition-colors duration-300 py-2"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--muted-foreground)',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    padding: '0.5rem 0',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = 'var(--primary)'}
+                  onMouseLeave={(e) => e.target.style.color = 'var(--muted-foreground)'}
                 >
                   {item.label}
                 </button>
               ))}
-              <Button 
+              <button 
                 onClick={() => scrollToSection('#contact')}
-                className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                className="btn btn-primary"
+                style={{ width: '100%' }}
               >
                 Hire Me
-              </Button>
+              </button>
             </div>
           </div>
         )}

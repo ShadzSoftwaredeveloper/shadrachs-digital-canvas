@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
 
@@ -8,69 +7,111 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="hero">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="hero-bg">
         <img 
           src={heroImage} 
-          alt="Developer workspace" 
-          className="w-full h-full object-cover opacity-60"
+          alt="Developer workspace"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-transparent" />
+        <div className="hero-overlay" />
       </div>
 
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 left-20 w-2 h-2 bg-primary rounded-full animate-float" />
-        <div className="absolute top-40 right-32 w-1 h-1 bg-accent rounded-full animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-32 left-40 w-1.5 h-1.5 bg-primary-glow rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      <div className="floating-elements">
+        <div className="floating-dot animate-float" />
+        <div className="floating-dot animate-float" style={{ animationDelay: '1s' }} />
+        <div className="floating-dot animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+      <div className="hero-content">
         <div className="animate-fade-in">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-8xl font-bold mb-6 gradient-text">
             Mugerwa
           </h1>
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-foreground">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8" style={{ color: 'var(--foreground)' }}>
             Shadrach
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl mb-8" style={{ 
+            color: 'var(--muted-foreground)', 
+            maxWidth: '32rem', 
+            margin: '0 auto 2rem auto',
+            lineHeight: 1.6 
+          }}>
             Full-Stack Developer crafting exceptional digital experiences with modern technologies
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-in">
-          <Button size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
-            View My Work
-          </Button>
-          <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            Get In Touch
-          </Button>
+        <div className="flex flex-col items-center justify-center mb-12 animate-slide-in" style={{ gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <button className="btn btn-primary btn-lg">
+              View My Work
+            </button>
+            <button className="btn btn-outline btn-lg">
+              Get In Touch
+            </button>
+          </div>
         </div>
 
         {/* Social Links */}
-        <div className="flex justify-center gap-6 mb-16 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          <a href="#" className="p-3 rounded-full bg-card border border-border hover:border-primary hover:shadow-glow transition-all duration-300 group">
-            <Github className="w-6 h-6 text-muted-foreground group-hover:text-primary" />
+        <div className="flex justify-center mb-16 animate-fade-in" style={{ 
+          gap: '1.5rem',
+          animationDelay: '0.5s' 
+        }}>
+          <a href="#" className="social-link">
+            <Github size={24} />
           </a>
-          <a href="#" className="p-3 rounded-full bg-card border border-border hover:border-accent hover:shadow-glow transition-all duration-300 group">
-            <Linkedin className="w-6 h-6 text-muted-foreground group-hover:text-accent" />
+          <a href="#" className="social-link">
+            <Linkedin size={24} />
           </a>
-          <a href="#" className="p-3 rounded-full bg-card border border-border hover:border-accent hover:shadow-glow transition-all duration-300 group">
-            <Mail className="w-6 h-6 text-muted-foreground group-hover:text-accent" />
+          <a href="#" className="social-link">
+            <Mail size={24} />
           </a>
         </div>
 
         {/* Scroll Indicator */}
         <button 
           onClick={scrollToNext}
-          className="animate-bounce hover:text-primary transition-colors duration-300"
+          className="animate-bounce"
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'var(--foreground)',
+            cursor: 'pointer',
+            transition: 'color 0.3s ease'
+          }}
+          onMouseEnter={(e) => (e.target as HTMLElement).style.color = 'var(--primary)'}
+          onMouseLeave={(e) => (e.target as HTMLElement).style.color = 'var(--foreground)'}
         >
-          <ArrowDown className="w-8 h-8" />
+          <ArrowDown size={32} />
         </button>
       </div>
+
+      <style>{`
+        .social-link {
+          padding: 0.75rem;
+          border-radius: 50%;
+          background: var(--card);
+          border: 1px solid var(--border);
+          color: var(--muted-foreground);
+          text-decoration: none;
+          transition: var(--transition-smooth);
+        }
+        
+        .social-link:hover {
+          border-color: var(--primary);
+          box-shadow: var(--shadow-glow);
+          color: var(--primary);
+        }
+
+        @media (max-width: 640px) {
+          .flex {
+            flex-direction: column;
+          }
+        }
+      `}</style>
     </section>
   );
 };
