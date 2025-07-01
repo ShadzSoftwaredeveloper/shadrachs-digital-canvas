@@ -14,59 +14,32 @@ const Footer = () => {
   };
 
   return (
-    <footer style={{
-      background: 'var(--card)',
-      borderTop: '1px solid var(--border)'
-    }}>
-      <div className="container" style={{ padding: '3rem 1.5rem' }}>
-        <div className="grid md:grid-cols-3 mb-8">
+    <footer className="bg-card border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div className="space-y-4">
             <button 
               onClick={scrollToTop}
-              className="text-3xl font-bold gradient-text"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                textAlign: 'left',
-                transition: 'transform 0.3s ease'
-              }}
-              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
               Mugerwa Shadrach
             </button>
-            <p style={{ 
-              color: 'var(--muted-foreground)', 
-              lineHeight: 1.6 
-            }}>
+            <p className="text-muted-foreground leading-relaxed">
               Full-Stack Developer passionate about creating exceptional digital experiences 
               and solving complex problems through code.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3 className="font-semibold" style={{ color: 'var(--foreground)' }}>
-              Quick Links
-            </h3>
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground">Quick Links</h3>
+            <nav className="flex flex-col space-y-2">
               {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: 'var(--muted-foreground)',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    padding: '0.5rem 0',
-                    transition: 'color 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => e.target.style.color = 'var(--primary)'}
-                  onMouseLeave={(e) => e.target.style.color = 'var(--muted-foreground)'}
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 text-left"
                 >
                   {item}
                 </button>
@@ -75,49 +48,24 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3 className="font-semibold" style={{ color: 'var(--foreground)' }}>
-              Get In Touch
-            </h3>
-            <div style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '0.5rem',
-              color: 'var(--muted-foreground)' 
-            }}>
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground">Get In Touch</h3>
+            <div className="space-y-2 text-muted-foreground">
               <p>Kampala, Uganda</p>
               <p>shadrach.mugerwa@email.com</p>
               <p>+256 123 456 789</p>
             </div>
             
             {/* Social Links */}
-            <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.5rem' }}>
+            <div className="flex gap-3 pt-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  style={{
-                    padding: '0.5rem',
-                    background: 'var(--secondary)',
-                    borderRadius: 'var(--radius)',
-                    border: '1px solid var(--border)',
-                    color: 'var(--muted-foreground)',
-                    textDecoration: 'none',
-                    transition: 'var(--transition-smooth)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.borderColor = 'var(--primary)';
-                    e.target.style.boxShadow = 'var(--shadow-glow)';
-                    e.target.style.color = 'var(--primary)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.borderColor = 'var(--border)';
-                    e.target.style.boxShadow = 'none';
-                    e.target.style.color = 'var(--muted-foreground)';
-                  }}
+                  className="p-2 bg-secondary rounded-lg border border-border hover:border-primary hover:shadow-glow transition-all duration-300 group"
                 >
-                  <social.icon size={20} />
+                  <social.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
                 </a>
               ))}
             </div>
@@ -125,22 +73,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div style={{
-          borderTop: '1px solid var(--border)',
-          paddingTop: '2rem'
-        }}>
-          <div className="flex flex-col md:flex-row justify-between items-center" style={{ gap: '1rem' }}>
-            <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
+        <div className="border-t border-border pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-muted-foreground text-sm">
               © {currentYear} Mugerwa Shadrach. All rights reserved.
             </p>
             
-            <div className="flex items-center text-sm" style={{ 
-              gap: '0.5rem',
-              color: 'var(--muted-foreground)' 
-            }}>
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <span>Built with</span>
-              <Heart size={16} style={{ color: '#ef4444', fill: 'currentColor' }} />
-              <span>using React, TypeScript & CSS</span>
+              <Heart className="w-4 h-4 text-red-500 fill-current" />
+              <span>using React, TypeScript & Tailwind CSS</span>
             </div>
           </div>
         </div>

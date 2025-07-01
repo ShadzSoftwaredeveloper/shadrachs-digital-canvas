@@ -1,3 +1,6 @@
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Smartphone, Globe, Database } from "lucide-react";
 
 const Projects = () => {
@@ -66,32 +69,17 @@ const Projects = () => {
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'mobile': return <Smartphone size={16} />;
-      case 'api': return <Database size={16} />;
-      default: return <Globe size={16} />;
+      case 'mobile': return <Smartphone className="w-4 h-4" />;
+      case 'api': return <Database className="w-4 h-4" />;
+      default: return <Globe className="w-4 h-4" />;
     }
   };
 
-  const getTypeBadgeStyle = (type: string) => {
+  const getTypeColor = (type: string) => {
     switch (type) {
-      case 'mobile': 
-        return {
-          background: 'hsla(186, 100%, 64%, 0.1)',
-          color: 'var(--accent)',
-          borderColor: 'hsla(186, 100%, 64%, 0.3)'
-        };
-      case 'api': 
-        return {
-          background: 'hsla(142, 76%, 56%, 0.1)',
-          color: 'var(--success)',
-          borderColor: 'hsla(142, 76%, 56%, 0.3)'
-        };
-      default: 
-        return {
-          background: 'hsla(237, 84%, 64%, 0.1)',
-          color: 'var(--primary)',
-          borderColor: 'hsla(237, 84%, 64%, 0.3)'
-        };
+      case 'mobile': return 'bg-accent/10 text-accent border-accent/30';
+      case 'api': return 'bg-success/10 text-success border-success/30';
+      default: return 'bg-primary/10 text-primary border-primary/30';
     }
   };
 
@@ -99,220 +87,135 @@ const Projects = () => {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="section" style={{ padding: '5rem 1.5rem' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem' }}>
+    <section id="projects" className="py-20 px-6">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-accent-text">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-accent bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-lg" style={{ 
-            color: 'var(--muted-foreground)', 
-            maxWidth: '48rem', 
-            margin: '0 auto',
-            lineHeight: 1.6 
-          }}>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A showcase of my recent work, demonstrating expertise across different 
             platforms and technologies. Each project tells a story of problem-solving and innovation.
           </p>
         </div>
 
         {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', marginBottom: '4rem' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
           {featuredProjects.map((project, index) => (
-            <div 
+            <Card 
               key={project.title}
-              className="card hover-elegant"
-              style={{
-                background: 'var(--card)',
-                transition: 'var(--transition-smooth)',
-                overflow: 'hidden'
-              }}
+              className="group overflow-hidden bg-card border-border hover:border-primary hover:shadow-elegant transition-all duration-300"
             >
-              <div style={{ position: 'relative', overflow: 'hidden' }}>
+              <div className="relative overflow-hidden">
                 <img 
                   src={project.image}
                   alt={project.title}
-                  style={{
-                    width: '100%',
-                    height: '12rem',
-                    objectFit: 'cover',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div 
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)',
-                    opacity: 0,
-                    transition: 'opacity 0.3s ease'
-                  }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <span 
-                  className="badge"
-                  style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    left: '1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.25rem',
-                    border: '1px solid',
-                    ...getTypeBadgeStyle(project.type)
-                  }}
+                {/* Project Type Badge */}
+                <Badge 
+                  className={`absolute top-4 left-4 ${getTypeColor(project.type)} border`}
                 >
                   {getTypeIcon(project.type)}
-                  <span style={{ textTransform: 'capitalize' }}>{project.type}</span>
-                </span>
+                  <span className="ml-1 capitalize">{project.type}</span>
+                </Badge>
               </div>
               
-              <div className="p-6" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <h3 className="text-xl font-bold" style={{ 
-                  color: 'var(--foreground)',
-                  transition: 'color 0.3s ease'
-                }}>
+              <div className="p-6 space-y-4">
+                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
                 
-                <p className="text-sm" style={{ 
-                  color: 'var(--muted-foreground)', 
-                  lineHeight: 1.6 
-                }}>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
                 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <span 
+                    <Badge 
                       key={tech}
-                      className="badge badge-secondary text-xs"
+                      variant="secondary"
+                      className="text-xs bg-secondary/50 text-secondary-foreground"
                     >
                       {tech}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
                 
-                <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.5rem' }}>
-                  <button className="btn btn-primary btn-sm" style={{ flex: 1 }}>
-                    <ExternalLink size={16} style={{ marginRight: '0.5rem' }} />
+                <div className="flex gap-3 pt-2">
+                  <Button 
+                    size="sm" 
+                    className="flex-1 bg-gradient-primary hover:shadow-glow"
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
                     Live Demo
-                  </button>
-                  <button className="btn btn-outline btn-sm" style={{ padding: '0.5rem' }}>
-                    <Github size={16} />
-                  </button>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="border-border hover:border-primary"
+                  >
+                    <Github className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 
         {/* Other Projects Grid */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          <h3 className="text-3xl font-bold text-center" style={{ color: 'var(--foreground)' }}>
-            More Projects
-          </h3>
+        <div className="space-y-8">
+          <h3 className="text-3xl font-bold text-center text-foreground">More Projects</h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherProjects.map((project) => (
-              <div 
+              <Card 
                 key={project.title}
-                className="card p-6 hover-glow"
-                style={{
-                  background: 'var(--card)',
-                  transition: 'var(--transition-smooth)'
-                }}
+                className="p-6 bg-card border-border hover:border-primary hover:shadow-glow transition-all duration-300 group"
               >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'start', justifyContent: 'space-between' }}>
-                    <h4 className="font-semibold" style={{ 
-                      color: 'var(--foreground)',
-                      transition: 'color 0.3s ease'
-                    }}>
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between">
+                    <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h4>
-                    <span 
-                      className="badge text-xs"
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        border: '1px solid',
-                        ...getTypeBadgeStyle(project.type)
-                      }}
-                    >
+                    <Badge className={`${getTypeColor(project.type)} border text-xs`}>
                       {getTypeIcon(project.type)}
-                    </span>
+                    </Badge>
                   </div>
                   
-                  <p className="text-sm" style={{ 
-                    color: 'var(--muted-foreground)', 
-                    lineHeight: 1.6 
-                  }}>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {project.description}
                   </p>
                   
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem' }}>
+                  <div className="flex flex-wrap gap-1">
                     {project.tech.slice(0, 3).map((tech) => (
-                      <span 
+                      <Badge 
                         key={tech}
-                        className="badge text-xs"
-                        style={{
-                          background: 'hsla(220, 16%, 16%, 0.3)',
-                          color: 'var(--secondary-foreground)'
-                        }}
+                        variant="secondary"
+                        className="text-xs bg-secondary/30"
                       >
                         {tech}
-                      </span>
+                      </Badge>
                     ))}
                     {project.tech.length > 3 && (
-                      <span 
-                        className="badge text-xs"
-                        style={{
-                          background: 'hsla(220, 16%, 16%, 0.3)',
-                          color: 'var(--secondary-foreground)'
-                        }}
-                      >
+                      <Badge variant="secondary" className="text-xs bg-secondary/30">
                         +{project.tech.length - 3}
-                      </span>
+                      </Badge>
                     )}
                   </div>
                   
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <button 
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        padding: '0.5rem',
-                        borderRadius: 'var(--radius)',
-                        color: 'var(--muted-foreground)',
-                        cursor: 'pointer',
-                        transition: 'color 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => e.target.style.color = 'var(--primary)'}
-                      onMouseLeave={(e) => e.target.style.color = 'var(--muted-foreground)'}
-                    >
-                      <ExternalLink size={16} />
-                    </button>
-                    <button 
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        padding: '0.5rem',
-                        borderRadius: 'var(--radius)',
-                        color: 'var(--muted-foreground)',
-                        cursor: 'pointer',
-                        transition: 'color 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => e.target.style.color = 'var(--primary)'}
-                      onMouseLeave={(e) => e.target.style.color = 'var(--muted-foreground)'}
-                    >
-                      <Github size={16} />
-                    </button>
+                  <div className="flex gap-2">
+                    <Button variant="ghost" size="sm" className="p-2 h-8">
+                      <ExternalLink className="w-4 h-4" />
+                    </Button>
+                    <Button variant="ghost" size="sm" className="p-2 h-8">
+                      <Github className="w-4 h-4" />
+                    </Button>
                   </div>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
