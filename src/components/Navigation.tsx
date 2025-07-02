@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logoImage from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,9 +46,16 @@ const Navigation = () => {
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('#')}
-            className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            className="flex items-center gap-2 hover:scale-105 transition-transform duration-300"
           >
-            MS
+            <img 
+              src={logoImage} 
+              alt="Mugerwa Shadrach Logo" 
+              className="w-10 h-10 object-contain"
+            />
+            <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Mugerwa Shadrach
+            </span>
           </button>
 
           {/* Desktop Menu */}
