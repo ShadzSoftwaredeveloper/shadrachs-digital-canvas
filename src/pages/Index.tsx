@@ -26,18 +26,33 @@ const Index = () => {
             Discover my projects and professional achievements
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link to="/projects" className="group">
               <div className="p-8 bg-card border border-border rounded-lg hover:border-primary hover:shadow-elegant transition-all duration-300">
                 <FolderOpen className="w-12 h-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                  View Projects
+                  Video Projects
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  Explore my latest work and development projects
+                  Explore my video production and visual effects work
                 </p>
                 <Button className="bg-gradient-primary hover:shadow-glow">
                   View Portfolio <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+            </Link>
+            
+            <Link to="/coding-projects" className="group">
+              <div className="p-8 bg-card border border-border rounded-lg hover:border-primary hover:shadow-elegant transition-all duration-300">
+                <FolderOpen className="w-12 h-12 text-secondary mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  Coding Projects
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Explore my software development and programming projects
+                </p>
+                <Button variant="secondary" className="hover:shadow-glow">
+                  View Code <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             </Link>
