@@ -59,6 +59,23 @@ const About = () => {
           </div>
 
           <div className="relative">
+            {/* Profile Image Placeholder */}
+            <div className="mb-6 relative">
+              <div className="w-64 h-64 mx-auto bg-gradient-subtle rounded-2xl border border-border overflow-hidden hover:shadow-glow transition-all duration-300">
+                <div className="w-full h-full bg-card border-2 border-dashed border-border rounded-2xl flex items-center justify-center">
+                  <div className="text-center space-y-3">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto flex items-center justify-center">
+                      <svg className="w-8 h-8 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-muted-foreground text-sm">Profile Photo</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-success rounded-full border-2 border-background animate-glow-pulse" />
+            </div>
+
             <Card className="p-8 bg-gradient-subtle border-border hover:shadow-elegant transition-all duration-300">
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
