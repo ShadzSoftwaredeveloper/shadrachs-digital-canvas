@@ -1,7 +1,13 @@
 import { Card } from "@/components/ui/card";
 import { Code, Lightbulb, Rocket, Users } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const About = () => {
+  const isMobile = useIsMobile();
+  const [api, setApi] = useState<any>();
+
   const highlights = [
     {
       icon: Code,
@@ -24,6 +30,16 @@ const About = () => {
       description: "Working effectively in teams and communicating technical concepts clearly"
     }
   ];
+
+  useEffect(() => {
+    if (!api || !isMobile) return;
+
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [api, isMobile]);
 
   return (
     <section id="about" className="py-20 px-6">
@@ -99,25 +115,54 @@ const About = () => {
           </div>
         </div>
 
-        {/* Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((highlight, index) => (
-            <Card 
-              key={highlight.title}
-              className="p-6 bg-card border-border hover:border-primary hover:shadow-glow transition-all duration-300 group"
-            >
-              <div className="text-center space-y-4">
-                <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
-                  <highlight.icon className="w-6 h-6 text-primary-foreground" />
+        {/* Highlights Section */}
+        {isMobile ? (
+          <Carousel 
+            setApi={setApi}
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent>
+              {highlights.map((highlight, index) => (
+                <CarouselItem key={highlight.title}>
+                  <Card className="p-6 bg-card border-border hover:border-primary hover:shadow-glow transition-all duration-300 group">
+                    <div className="text-center space-y-4">
+                      <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
+                        <highlight.icon className="w-6 h-6 text-primary-foreground" />
+                      </div>
+                      <h4 className="font-semibold text-foreground">{highlight.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {highlight.description}
+                      </p>
+                    </div>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {highlights.map((highlight, index) => (
+              <Card 
+                key={highlight.title}
+                className="p-6 bg-card border-border hover:border-primary hover:shadow-glow transition-all duration-300 group"
+              >
+                <div className="text-center space-y-4">
+                  <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
+                    <highlight.icon className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <h4 className="font-semibold text-foreground">{highlight.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {highlight.description}
+                  </p>
                 </div>
-                <h4 className="font-semibold text-foreground">{highlight.title}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {highlight.description}
-                </p>
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
