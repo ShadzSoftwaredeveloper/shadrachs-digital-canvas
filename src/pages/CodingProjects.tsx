@@ -11,31 +11,31 @@ const CodingProjects = () => {
       title: "E-Commerce Platform",
       description: "Full-stack e-commerce solution with React, Node.js, and PostgreSQL",
       technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Tailwind CSS"],
-      github: "https://github.com/username/ecommerce",
-      live: "https://demo-ecommerce.com",
+      github: "https://github.com/yourusername/ecommerce-platform",
+      live: "https://ecommerce-demo.vercel.app",
       icon: <Globe className="w-6 h-6" />
     },
     {
       title: "Task Management System",
       description: "Real-time collaborative task management with drag-and-drop functionality",
       technologies: ["TypeScript", "React", "Socket.io", "MongoDB", "Express"],
-      github: "https://github.com/username/taskmanager",
-      live: "https://taskmanager-demo.com",
+      github: "https://github.com/yourusername/task-manager",
+      live: "https://taskmanager-app.netlify.app",
       icon: <Laptop className="w-6 h-6" />
     },
     {
       title: "API Gateway Service",
       description: "Microservices API gateway with authentication and rate limiting",
       technologies: ["Node.js", "Redis", "Docker", "JWT", "Nginx"],
-      github: "https://github.com/username/api-gateway",
+      github: "https://github.com/yourusername/api-gateway-service",
       icon: <Database className="w-6 h-6" />
     },
     {
       title: "Real-time Analytics Dashboard",
       description: "Interactive dashboard for real-time data visualization and analytics",
       technologies: ["React", "D3.js", "WebSocket", "Python", "FastAPI"],
-      github: "https://github.com/username/analytics-dashboard",
-      live: "https://analytics-demo.com",
+      github: "https://github.com/yourusername/analytics-dashboard",
+      live: "https://analytics-dashboard.herokuapp.com",
       icon: <Code className="w-6 h-6" />
     }
   ];
