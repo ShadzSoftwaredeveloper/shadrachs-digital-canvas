@@ -45,13 +45,14 @@ const CodingProjects = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-subtle">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+      <section className="pt-32 pb-20 px-6 relative bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=5760&q=80')"}}>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Software Development
             <span className="block text-primary">Projects</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8">
             Explore my coding projects showcasing full-stack development, 
             modern technologies, and innovative solutions.
           </p>
