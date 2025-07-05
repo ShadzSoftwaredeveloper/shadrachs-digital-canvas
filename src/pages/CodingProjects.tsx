@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { ExternalLink, Github, Code, Laptop, Globe, Database } from "lucide-react";
 
 const CodingProjects = () => {
@@ -62,7 +63,65 @@ const CodingProjects = () => {
       {/* Projects Grid */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Mobile Carousel */}
+          <div className="block md:hidden">
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-4">
+                {projects.map((project, index) => (
+                  <CarouselItem key={index} className="pl-4 basis-[85%]">
+                    <Card className="group hover:shadow-elegant hover:border-primary transition-all duration-300 h-full">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="p-2 bg-primary/10 rounded-lg text-primary group-hover:scale-110 transition-transform duration-300">
+                            {project.icon}
+                          </div>
+                          <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
+                            {project.title}
+                          </CardTitle>
+                        </div>
+                        <CardDescription className="text-muted-foreground">
+                          {project.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.technologies.map((tech, techIndex) => (
+                            <Badge key={techIndex} variant="secondary" className="text-xs">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1"
+                            onClick={() => window.open(project.github, '_blank')}
+                          >
+                            <Github className="w-4 h-4 mr-2" />
+                            Code
+                          </Button>
+                          {project.live && (
+                            <Button
+                              size="sm"
+                              className="flex-1 bg-gradient-primary hover:shadow-glow"
+                              onClick={() => window.open(project.live, '_blank')}
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              Live Demo
+                            </Button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-elegant hover:border-primary transition-all duration-300">
                 <CardHeader>
