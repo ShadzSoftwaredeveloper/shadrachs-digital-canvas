@@ -4,7 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ThemeToggle from "@/components/ThemeToggle";
 import SocialMediaFloat from "@/components/SocialMediaFloat";
 import Index from "./pages/Index";
 import ProjectsPage from "./pages/Projects";
@@ -25,7 +24,6 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <ThemeToggle />
         <SocialMediaFloat />
         <BrowserRouter>
           <Routes>
