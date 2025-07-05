@@ -46,7 +46,7 @@ const SocialMediaFloat = () => {
 
   return (
     <div 
-      className="fixed right-6 bottom-1/4 z-50"
+      className="fixed left-6 top-1/2 transform -translate-y-1/2 z-50"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
