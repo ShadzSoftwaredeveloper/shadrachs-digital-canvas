@@ -21,7 +21,7 @@ const Hero = () => {
   };
 
   const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('explore-work')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToContact = () => {
