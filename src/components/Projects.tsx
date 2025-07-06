@@ -2,8 +2,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Play, Video, Camera, Zap, Target, Users, TrendingUp, Eye, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
+  const navigate = useNavigate();
   const videoProjects = [
     {
       title: "Brand Storytelling Campaign",
@@ -126,7 +128,7 @@ const Projects = () => {
               variant="outline" 
               size="lg" 
               className="border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-8 py-4 text-lg"
-              onClick={() => window.open('/contact', '_blank')}
+              onClick={() => navigate('/contact')}
             >
               <Target className="w-5 h-5 mr-2" />
               Start Your Project
