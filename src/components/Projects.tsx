@@ -95,8 +95,9 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-32 px-6 bg-gradient-subtle">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="relative py-32 px-6 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=5760&q=80')"}}>
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="max-w-6xl mx-auto text-center relative z-10">
           <div className="mb-8">
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/30 px-4 py-2">
               <Video className="w-4 h-4 mr-2" />
@@ -104,20 +105,29 @@ const Projects = () => {
             </Badge>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-accent bg-clip-text text-transparent leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-lg leading-tight">
             Explore the Best Video Production Projects
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
             With special visual effects, boost your brand with top-notch visuals and expert storytelling
           </p>
           
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">
-            <Button size="lg" className="bg-gradient-primary hover:shadow-glow px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-gradient-primary hover:shadow-glow px-8 py-4 text-lg"
+              onClick={() => window.open('https://youtube.com', '_blank')}
+            >
               <Play className="w-5 h-5 mr-2" />
               Watch Our Reel
             </Button>
-            <Button variant="outline" size="lg" className="border-border hover:border-primary px-8 py-4 text-lg">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-8 py-4 text-lg"
+              onClick={() => window.open('/contact', '_blank')}
+            >
               <Target className="w-5 h-5 mr-2" />
               Start Your Project
             </Button>
