@@ -34,15 +34,17 @@ const Skills = () => {
         "Linux", "Bash", "VS Code", "Figma", "Postman"
       ],
       gradient: "bg-gradient-accent"
+    },
+    {
+      title: "UI & UX Design",
+      skills: [
+        "Figma", "Adobe XD", "Sketch", "Prototyping", "Wireframing", 
+        "User Research", "Design Systems", "Responsive Design", "Accessibility"
+      ],
+      gradient: "bg-gradient-primary"
     }
   ];
 
-  const certifications = [
-    "AWS Cloud Practitioner",
-    "Meta Frontend Developer",
-    "Google UX Design", 
-    "Microsoft Azure Fundamentals"
-  ];
 
   return (
     <section id="skills" className="py-20 px-6 bg-muted/30">
@@ -58,7 +60,7 @@ const Skills = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {skillCategories.map((category, index) => (
             <Card 
               key={category.title}
@@ -87,28 +89,6 @@ const Skills = () => {
             </Card>
           ))}
         </div>
-
-        {/* Certifications */}
-        <Card className="p-8 bg-gradient-subtle border-border">
-          <div className="text-center space-y-6">
-            <h3 className="text-2xl font-bold text-foreground">Certifications & Learning</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Committed to continuous learning and professional development through 
-              industry-recognized certifications and courses.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-4">
-              {certifications.map((cert) => (
-                <Badge 
-                  key={cert}
-                  className="px-4 py-2 bg-accent/10 text-accent border border-accent/30 hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-                >
-                  {cert}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </Card>
       </div>
     </section>
   );
